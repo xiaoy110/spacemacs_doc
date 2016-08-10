@@ -77,26 +77,26 @@ setq-default dotspacemacs-configuration-layers '(elpy))
 #+END_SRC
 ** 修改emace的各种颜色
 M-x customeize-group 然后输入 修要修改颜色的层 如org-faces
-#+BEGIN_SRC 
 <s    然后按tab按键
 C-c ' 可以跳转到文本编辑模式
 再输入 C-c ' 就可以回来了
-#+END_SRC
-- 例子
+#+BEGIN_SRC 
 - #+BEGIN_SRC python
   - import time
   - print time.time()
 - #+END_SRC
-#+BEGIN_EXAMPLE
+#+END_SRC
+- 例子
 <e    然后按tab按键
-#+END_EXAMPLE
+#+BEGIN_EXAMPLE
 - #+BEGIN_EXAMPLE
 - #+END_EXAMPLE
-#+BEGIN_EXAMPLE
-<v    然后按tab按键
 #+END_EXAMPLE
+- <v    然后按tab按键
+#+BEGIN_EXAMPLE
 - #+BEGIN_VERSE
 - #+END_VERSE
+#+END_EXAMPLE
 ** git 提交文件
 #+BEGIN_EXAMPLE
 
