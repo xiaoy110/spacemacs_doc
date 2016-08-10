@@ -92,7 +92,7 @@ C-c ' 可以跳转到文本编辑模式
 - #+BEGIN_EXAMPLE
 - #+END_EXAMPLE
 #+END_EXAMPLE
-- <v    然后按tab按键
+<v    然后按tab按键
 #+BEGIN_EXAMPLE
 - #+BEGIN_VERSE
 - #+END_VERSE
