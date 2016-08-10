@@ -1,4 +1,4 @@
-* 已经就该的配置
+* emacs的配置
 ** 添加的包
 #+BEGIN_SRC emacs-lisp
 dotspacemacs-configuration-layers '(
