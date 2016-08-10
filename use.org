@@ -92,9 +92,9 @@ C-c ' 可以跳转到文本编辑模式
 #+END_EXAMPLE
 - #+BEGIN_EXAMPLE
 - #+END_EXAMPLE
-#+BEGIN_VERSE
+#+BEGIN_EXAMPLE
 <v    然后按tab按键
-#+END_VERSE
+#+END_EXAMPLE
 - #+BEGIN_VERSE
 - #+END_VERSE
 ** git 提交文件
