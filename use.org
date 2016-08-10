@@ -1,0 +1,92 @@
+* 已经就该的配置
+** 添加的包
+dotspacemacs-configuration-layers '(
+elpy
+auto-completion
+emacs-lisp
+go
+markdown
+org
+git
+syntax-checking
+)
+dotspacemacs-additional-packages'(
+counsel
+swiper
+multiple-cursors
+)
+** 快捷键绑定
+;; swiper counsel 快捷键绑定
+(ivy-mode 1)
+(setq ivy-use-virtual-buffers t)
+(global-set-key "\C-s" 'swiper)
+(global-set-key (kbd "C-c C-r") 'ivy-resume)
+(global-set-key (kbd "<f6>") 'ivy-resume)
+(global-set-key (kbd "M-x") 'counsel-M-x)
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+(global-set-key (kbd "<f1> f") 'counsel-describe-function)
+(global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+(global-set-key (kbd "<f1> l") 'counsel-load-library)
+(global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+(global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+(global-set-key (kbd "C-c g") 'counsel-git)
+(global-set-key (kbd "C-c j") 'counsel-git-grep)
+(global-set-key (kbd "C-c k") 'counsel-ag)
+(global-set-key (kbd "C-x l") 'counsel-locate)
+(global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
+(define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
+
+
+;; multiple-cursors 快捷键绑定
+(require 'multiple-cursors)
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
+** f5 切换到init.el
+(defun open-init-file()
+  (interactive)
+  (find-file "~/.emacs.d/init.el"))
+
+;; 这一行代码，将函数 open-init-file 绑定到 <f2> 键上
+(global-set-key (kbd "<f5>") 'open-init-file)
+;; 移动到行尾
+(global-set-key (kbd "M-n") 'move-end-of-line)
+
+** 简单的快捷键 
+C-f 向后移动
+C-b 向前移动
+C-a 行前
+M-n 行后（自己绑定）
+** 安装python环境 
+git clone git@github.com:TheBB/elpy-layer ~/.emacs.d/private/elpy
+setq-default dotspacemacs-configuration-layers '(elpy))
+** 修改emace的各种颜色
+M-x customeize-group 然后输入 修要修改颜色的层 如org-faces
+#+BEGIN_SRC 
+<s    然后按tab按键
+C-c ' 可以跳转到文本编辑模式
+再输入 C-c ' 就可以回来了
+#+END_SRC
+例子
+#+BEGIN_SRC python
+  import time
+  print time.time()
+
+#+END_SRC
+#+BEGIN_EXAMPLE
+<e    然后按tab按键
+#+END_EXAMPLE
+#+BEGIN_VERSE
+<v    然后按tab按键
+#+END_VERSE
+** git 提交文件
+提交 仓库 git g c c   输入点东西 wq 退出
+push 仓库 SPC g P u   输入用户名 密码
+** 查看帮助
+查看各种帮助文档SPC h T
+SPC t SPC
+查看快捷键帮助 C-h k 按下要查寻的快捷键
+查看函数帮助 C-h f 输入要查寻的函数
+按q退出 C-g 取消
