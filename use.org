@@ -1,5 +1,6 @@
 * 已经就该的配置
 ** 添加的包
+#+BEGIN_SRC emacs-lisp
 dotspacemacs-configuration-layers '(
 elpy
 auto-completion
@@ -15,7 +16,10 @@ counsel
 swiper
 multiple-cursors
 )
+#+END_SRC
 ** 快捷键绑定
+#+BEGIN_SRC emacs-list
+
 ;; swiper counsel 快捷键绑定
 (ivy-mode 1)
 (setq ivy-use-virtual-buffers t)
@@ -43,8 +47,11 @@ multiple-cursors
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+#+END_SRC
 
 ** f5 切换到init.el
+#+BEGIN_SRC emacs-listp
+
 (defun open-init-file()
   (interactive)
   (find-file "~/.emacs.d/init.el"))
@@ -53,15 +60,21 @@ multiple-cursors
 (global-set-key (kbd "<f5>") 'open-init-file)
 ;; 移动到行尾
 (global-set-key (kbd "M-n") 'move-end-of-line)
+#+END_SRC
 
 ** 简单的快捷键 
+#+BEGIN_EXAMPLE
 C-f 向后移动
 C-b 向前移动
 C-a 行前
 M-n 行后（自己绑定）
+#+END_EXAMPLE
 ** 安装python环境 
+#+BEGIN_SRC emacs-listp
 git clone git@github.com:TheBB/elpy-layer ~/.emacs.d/private/elpy
 setq-default dotspacemacs-configuration-layers '(elpy))
+
+#+END_SRC
 ** 修改emace的各种颜色
 M-x customeize-group 然后输入 修要修改颜色的层 如org-faces
 #+BEGIN_SRC 
@@ -82,11 +95,14 @@ C-c ' 可以跳转到文本编辑模式
 <v    然后按tab按键
 #+END_VERSE
 ** git 提交文件
+#+BEGIN_EXAMPLE
+
 提交 仓库 git g c c   输入点东西 wq 退出
 push 仓库 SPC g P u   输入用户名 密码
+#+END_EXAMPLE
 ** 查看帮助
-查看各种帮助文档SPC h T
-SPC t SPC
-查看快捷键帮助 C-h k 按下要查寻的快捷键
-查看函数帮助 C-h f 输入要查寻的函数
-按q退出 C-g 取消
+- 查看各种帮助文档SPC h T
+- SPC t SPC
+- 查看快捷键帮助 C-h k 按下要查寻的快捷键
+- 查看函数帮助 C-h f 输入要查寻的函数
+- 按q退出 C-g 取消
