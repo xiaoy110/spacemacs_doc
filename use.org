@@ -109,3 +109,101 @@ push 仓库 SPC g P u   输入用户名 密码
 - 查看快捷键帮助 C-h k 按下要查寻的快捷键
 - 查看函数帮助 C-h f 输入要查寻的函数
 - 按q退出 C-g 取消
+** 插件
+*** web-mode js2-mode
+C-x d 进入Dired mode
++ 创建目录
+g 刷新目录
+C 拷贝
+D 删除
+R 重命名
+d 标记删除
+u 取消标记
+x 执行标记
+*** web-mode
+install web-mode
+#+BEGIN_SRC emacs_lisp
+dotspacemacs-additional-packages '(web-mode js2-mode)
+#+END_SRC
+让html使用web-mode打开,js文件使用js-mode模式打开
+#+BEGIN_SRC emacs_lisp
+(setq auto-mode-alist
+      (append
+       '(("\\.js\\'" . js2-mode))
+       '(("\\.html\\'" . web-mode))
+       auto-mode-alist))
+#+END_SRC
+
+*** occur and imenu
+方便修改文件
+M-s o 可以看到查找内容的列表，按e进行编辑
+#+BEGIN_SRC emacs_lisp
+(defun occur-dwim ()
+  "Call `occur' with a sane default."
+  (interactive)
+  (push (if (region-active-p)
+            (buffer-substring-no-properties
+             (region-beginning)
+             (region-end))
+          (let ((sym (thing-at-point 'symbol)))
+            (when (stringp sym)
+              (regexp-quote sym))))
+        regexp-history)
+  (call-interactively 'occur))
+(global-set-key (kbd "M-s o") 'occur-dwim)
+
+#+END_SRC
+这个不会用
+#+BEGIN_SRC  emacs_lisp
+(defun js2-imenu-make-index ()
+      (interactive)
+      (save-excursion
+        ;; (setq imenu-generic-expression '((nil "describe\\(\"\\(.+\\)\"" 1)))
+        (imenu--generic-function '(("describe" "\\s-*describe\\s-*(\\s-*[\"']\\(.+\\)[\"']\\s-*,.*" 1)
+                                   ("it" "\\s-*it\\s-*(\\s-*[\"']\\(.+\\)[\"']\\s-*,.*" 1)
+                                   ("test" "\\s-*test\\s-*(\\s-*[\"']\\(.+\\)[\"']\\s-*,.*" 1)
+                                   ("before" "\\s-*before\\s-*(\\s-*[\"']\\(.+\\)[\"']\\s-*,.*" 1)
+                                   ("after" "\\s-*after\\s-*(\\s-*[\"']\\(.+\\)[\"']\\s-*,.*" 1)
+                                   ("Function" "function[ \t]+\\([a-zA-Z0-9_$.]+\\)[ \t]*(" 1)
+                                   ("Function" "^[ \t]*\\([a-zA-Z0-9_$.]+\\)[ \t]*=[ \t]*function[ \t]*(" 1)
+                                   ("Function" "^var[ \t]*\\([a-zA-Z0-9_$.]+\\)[ \t]*=[ \t]*function[ \t]*(" 1)
+                                   ("Function" "^[ \t]*\\([a-zA-Z0-9_$.]+\\)[ \t]*()[ \t]*{" 1)
+                                   ("Function" "^[ \t]*\\([a-zA-Z0-9_$.]+\\)[ \t]*:[ \t]*function[ \t]*(" 1)
+                                   ("Task" "[. \t]task([ \t]*['\"]\\([^'\"]+\\)" 1)))))
+(add-hook 'js2-mode-hook
+              (lambda ()
+                (setq imenu-create-index-function 'js2-imenu-make-index)))
+
+(global-set-key (kbd "M-s i") 'counsel-imenu)
+
+#+END_SRC
+
+*** expand-region
+#+BEGIN_SRC emacs_lisp
+(global-set-key (kbd "C-=") 'er/expand-region)
+
+#+END_SRC
+*** iedit
+默认已经安装
+#+BEGIN_SRC emacs_lisp
+(global-set-key (kbd "M-s e") 'iedit-mode)
+#+END_SRC
+*** 使用M-n and M-p 换成 C-n and C-p
+#+BEGIN_SRC emacs_lisp
+(with-eval-after-load 'company
+  (define-key company-active-map (kbd "M-n") nil)
+  (define-key company-active-map (kbd "M-p") nil)
+  (define-key company-active-map (kbd "C-n") #'company-select-next)
+  (define-key company-active-map (kbd "C-p") #'company-select-previous))
+#+END_SRC
+*** 批量修改文件名
+C-x C-q 可以直接在Dired Mode 中编辑
+*** 搜索文件内的内容
+helm-ag 默认已经安装
+(global-set-key (kbd "C-c p s") 'helm-do-ag-project-root)
+*** 语法检查
+默认已经安装
+flycheck-mode
+#+BEGIN_SRC emacs_lisp
+(add-hook 'js2-mode-hook 'flycheck-mode)
+#+END_SRC
