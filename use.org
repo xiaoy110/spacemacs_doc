@@ -111,15 +111,15 @@ push 仓库 SPC g P u   输入用户名 密码
 - 按q退出 C-g 取消
 ** 插件
 *** web-mode js2-mode
-C-x d 进入Dired mode
-+ 创建目录
-g 刷新目录
-C 拷贝
-D 删除
-R 重命名
-d 标记删除
-u 取消标记
-x 执行标记
+- C-x d 进入Dired mode
+- + 创建目录
+- g 刷新目录
+- C 拷贝
+- D 删除
+- R 重命名
+- d 标记删除
+- u 取消标记
+- x 执行标记
 *** web-mode
 install web-mode
 #+BEGIN_SRC emacs_lisp
@@ -153,7 +153,7 @@ M-s o 可以看到查找内容的列表，按e进行编辑
 (global-set-key (kbd "M-s o") 'occur-dwim)
 
 #+END_SRC
-这个不会用
+显示当前js文件里面的函数
 #+BEGIN_SRC  emacs_lisp
 (defun js2-imenu-make-index ()
       (interactive)
@@ -200,10 +200,12 @@ M-s o 可以看到查找内容的列表，按e进行编辑
 C-x C-q 可以直接在Dired Mode 中编辑
 *** 搜索文件内的内容
 helm-ag 默认已经安装
+#+BEGIN_SRC emacs_lisp
 (global-set-key (kbd "C-c p s") 'helm-do-ag-project-root)
+#+END_SRC
 *** 语法检查
 默认已经安装
 flycheck-mode
-#+BEGIN_SRC emacs_lisp
+#+begin_src emacs_lisp
 (add-hook 'js2-mode-hook 'flycheck-mode)
-#+END_SRC
+#+end_src
