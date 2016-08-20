@@ -1,0 +1,37 @@
+*  spacemaces启动
+** 启动后将messages buffer打开
+*** spacemaces启动后看着挺快，但是需要等一会才能操作，有点不对劲。
+- no1
+#+BEGIN_EXAMPLE
+You appear to be setting environment variables ("PATH" "MANPATH") in your .bashrc or .zshrc: 
+those files are only read by interactive shells, so you should instead set environment variables 
+in startup files like .profile, .bash_profile or .zshenv. Refer to your shell's man page for more 
+info. Customize `exec-path-from-shell-arguments' to remove "-i" when done, or disable `exec-
+path-from-shell-check-startup-files' to disable this message. For information about GNU Emacs 
+and the GNU system, type C-h C-a.
+#+END_EXAMPLE
++ 我想去掉，然后就
+If you don't want Emacs to warn about the location of your environment variable settings, disable that option with:
+#+BEGIN_SRC emacs_lisp
+(setq exec-path-from-shell-check-startup-files nil)
+#+END_SRC
+Put that before
+#+BEGIN_SRC emacs_lisp
+(exec-path-from-shell-initialize)
+#+END_SRC
+in your .emacs.
+
+- no2
+#+BEGIN_EXAMPLE
+ could not remap these functions in map `package-menu-mode-map':  backward-button))' originally mapped on `ESC'
+
+#+END_EXAMPLE
+我直接把它注释了
++ 操作方法
+
+1. 使用 helm-do-ag-project-root 函数
+2. 搜索 package-menu-mode-map 发现有两个文件里面有，分别是函数调用和文件里面调用我直接把它注释了
+#+BEGIN_EXAMPLE 
+layers/+dirstribution/spacemacs-base/packages.el 1052
+layers/+distribution/spacemacs/local/paradox/paradox.el 429
+#+END_EXAMPLE
